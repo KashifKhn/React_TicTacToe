@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Board from './components/Board'
 
 const App = () => {
+  const [winner, setWinner] = useState(null);
+
+  useEffect(() => {
+    if (winner) {
+      alert(`Player ${winner} has won!`);
+    }
+  }, [winner]);
+  
+  
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+    <div className='flex mx-auto w-full h-screen items-center justify-center'>
+      <div className="w-[400px] h-[450px]">
+        <Board
+          winner={winner}
+          setWinner={setWinner}
+         />
+      </div>
     </div>
   )
 }
