@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Button from './Button'
+import Icon from './Icon'
 import xIcon from '../assets/x-icon.png'
 import oIcon from '../assets/o-icon.png'
 
@@ -71,8 +71,8 @@ const Board = (props) => {
                         className='bg-gray-200 w-[7rem] h-[7rem] max-sm:w-[5rem] max-sm:h-[5rem] rounded-lg flex items-center justify-center shadow-2xl shadow-slate-950'
 
                     >
-                        {cell === 'X' && <Button icon={xIcon} />}
-                        {cell === 'O' && <Button icon={oIcon} />}
+                        {cell === 'X' && <Icon icon={xIcon} />}
+                        {cell === 'O' && <Icon icon={oIcon} />}
                         {hoveredCell === index && !cell && (
                             <img
                                 className='w-[5rem] h-[5rem]'
