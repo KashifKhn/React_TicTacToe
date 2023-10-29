@@ -16,9 +16,9 @@ const Board = (props) => {
             [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
             [0, 4, 8], [2, 4, 6] // Diagonals
         ];
-    
+
         let isDraw = true;
-    
+
         for (const combo of winningCombinations) {
             const [a, b, c] = combo;
             if (board[a] && board[a] === board[b] && board[a] === board[c]) {
@@ -27,12 +27,12 @@ const Board = (props) => {
                 break;
             }
         }
-    
+
         if (isDraw && !board.includes(null)) {
             setWinner('Draw');
         }
     }, [board]);
-    
+
 
     function resetBoard() {
         setBoard(Array(9).fill(null));
@@ -61,14 +61,15 @@ const Board = (props) => {
 
     return (
         <div className='flex flex-col items-center justify-center' >
-            <section className='grid grid-cols-3 gap-4'>
+            <section className='grid grid-cols-3 gap-4 px-4'>
                 {board.map((cell, index) => (
                     <div
                         key={index}
                         onClick={() => handleOnClick(index)}
                         onMouseEnter={() => handleCellHover(index)}
                         onMouseLeave={handleCellLeave}
-                        className='bg-gray-200 w-[7rem] h-[7rem] rounded-lg flex items-center justify-center shadow-2xl shadow-slate-950'
+                        className='bg-gray-200 w-[7rem] h-[7rem] max-sm:w-[5rem] max-sm:h-[5rem] rounded-lg flex items-center justify-center shadow-2xl shadow-slate-950'
+
                     >
                         {cell === 'X' && <Button icon={xIcon} />}
                         {cell === 'O' && <Button icon={oIcon} />}
