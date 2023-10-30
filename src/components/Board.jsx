@@ -29,9 +29,9 @@ const Board = (props) => {
             }
         }
 
-        if (isDraw && !board.includes(null)) 
+        if (isDraw && !board.includes(null))
             setWinner('Draw');
-        
+
     }, [board]);
 
 
@@ -63,31 +63,33 @@ const Board = (props) => {
 
     return (
         <div className='flex flex-col items-center justify-center' >
-            <section className='grid grid-cols-3 gap-4'>
-                {board.map((cell, index) => (
-                    <div
-                        key={nanoid()}
-                        onClick={() => handleOnClick(index)}
-                        onMouseEnter={() => handleCellHover(index)}
-                        onMouseLeave={handleCellLeave}
-                        className='bg-gray-200 w-[7rem] h-[7rem] max-sm:w-[5rem] max-sm:h-[5rem] rounded-lg flex items-center justify-center shadow-2xl shadow-slate-950'
+            <div className='w-[420px] h-[420px] max-sm:w-[320px] max-sm:h-[320px] flex items-center justify-center bg-white rounded-md'>
+                <section className='grid grid-cols-3 gap-4 '>
+                    {board.map((cell, index) => (
+                        <div
+                            key={nanoid()}
+                            onClick={() => handleOnClick(index)}
+                            onMouseEnter={() => handleCellHover(index)}
+                            onMouseLeave={handleCellLeave}
+                            className='bg-gray-200 w-[7rem] h-[7rem] max-sm:w-[5rem] max-sm:h-[5rem] rounded-lg flex items-center justify-center shadow-3xl shadow-slate-950'
 
-                    >
-                        {cell === 'X' && <Icon icon={xIcon} />}
-                        {cell === 'O' && <Icon icon={oIcon} />}
-                        {hoveredCell === index && !cell && (
-                            <img
-                                className='w-[5rem] h-[5rem] transition-opacity opacity-30 duration-700 ease-in-out'
-                                src={playerTurn ? xIcon : oIcon}
-                                alt={`Player ${playerTurn ? 'X' : 'O'}`}
-                            />
-                        )}
-                    </div>
-                ))}
-            </section>
+                        >
+                            {cell === 'X' && <Icon icon={xIcon} />}
+                            {cell === 'O' && <Icon icon={oIcon} />}
+                            {hoveredCell === index && !cell && (
+                                <img
+                                    className='w-[5rem] h-[5rem] transition-opacity opacity-30 duration-700 ease-in-out'
+                                    src={playerTurn ? xIcon : oIcon}
+                                    alt={`Player ${playerTurn ? 'X' : 'O'}`}
+                                />
+                            )}
+                        </div>
+                    ))}
+                </section>
+            </div>
             {
                 winner &&
-                <button className='bg-blue-600 px-4 py-2 mt-8 rounded-lg text-white ' onClick={resetBoard}>Reset</button>
+                <button className='bg-blue-600 px-8 py-2  my-2 rounded-lg text-white ' onClick={resetBoard}>Reset</button>
             }
         </div >
     )
