@@ -9,6 +9,8 @@ const Board = (props) => {
     const [playerTurn, setPlayerTurn] = useState(true);
     const [board, setBoard] = useState(Array(9).fill(null));
     const [hoveredCell, setHoveredCell] = useState(null);
+    const [notAllowed, setNotAllowed] = useState(false);
+    
 
 
     useEffect(() => {
@@ -56,9 +58,13 @@ const Board = (props) => {
         if (board[index] === null && !winner) {
             setHoveredCell(index);
         }
+
+        if(board[index] !== null)
+            setNotAllowed(true);
     }
     const handleCellLeave = () => {
         setHoveredCell(null);
+        setNotAllowed(false);
     }
 
     return (
@@ -71,11 +77,10 @@ const Board = (props) => {
                             onClick={() => handleOnClick(index)}
                             onMouseEnter={() => handleCellHover(index)}
                             onMouseLeave={handleCellLeave}
-                            className='bg-gray-200 w-[7rem] h-[7rem] max-sm:w-[5rem] max-sm:h-[5rem] rounded-lg flex items-center justify-center shadow-3xl shadow-slate-950'
-
+                            className={`bg-gray-200 w-[7rem] h-[7rem] max-sm:w-[5rem] max-sm:h-[5rem] rounded-lg flex items-center justify-center shadow-3xl shadow-slate-950 ${notAllowed ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                         >
-                            {cell === 'X' && <Icon icon={xIcon} />}
-                            {cell === 'O' && <Icon icon={oIcon} />}
+                            {cell === 'X' && <Icon notAllowed={notAllowed} icon={xIcon} />}
+                            {cell === 'O' && <Icon notAllowed={notAllowed} icon={oIcon} />}
                             {hoveredCell === index && !cell && (
                                 <img
                                     className='w-[5rem] h-[5rem] transition-opacity opacity-30 duration-700 ease-in-out'
