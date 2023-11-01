@@ -33,6 +33,8 @@ const Board = (props) => {
 
         if (isDraw && !board.includes(null))
             setWinner('Draw');
+        if(winner)
+            setNotAllowed(true);
 
     }, [board]);
 
@@ -59,7 +61,7 @@ const Board = (props) => {
             setHoveredCell(index);
         }
 
-        if(board[index] !== null)
+        if(board[index] !== null || winner)
             setNotAllowed(true);
     }
     const handleCellLeave = () => {

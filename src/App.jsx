@@ -30,15 +30,19 @@ const App = () => {
     winingMsg = "The The Game Draw"
 
   return (
-    <div className='flex flex-col mx-auto w-full h-screen items-center  justify-center gap-4 overflow-hidden pt-8 bg-gray-200'>
+    <div className='relative flex flex-col mx-auto w-full h-screen items-center  justify-center gap-4 overflow-hidden pt-8 bg-gray-200'>
       {
         winner === 'X'
         &&
-        <Confetti width={window.innerWidth || 300} height={window.innerHeight || 200} />
+        <Confetti
+          width={window.innerWidth / 2 || 300} height={window.innerHeight || 200}
+        />
         ||
         winner === 'O'
         &&
-        <Confetti width={window.innerWidth || 300} height={window.innerHeight || 200} />
+        <Confetti width={window.innerWidth / 2 || 300} height={window.innerHeight || 200}
+          className='translate-x-1/2'
+        />
       }
       {
         winner &&
