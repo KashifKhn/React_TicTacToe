@@ -27,7 +27,7 @@ Before you start, ensure you have the following software installed:
 1. Clone the repository to your local machine:
 
    ```
-   git clone https://github.com/KashifKhn/Weather_App_React.git
+   git clone https://github.com/KashifKhn/React_TicTacToe.git
    ```
 
 2. Change your working directory to the project folder:
